@@ -1,0 +1,145 @@
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">
+                    Welcome to The Math Council
+                </h1>
+                <p class="lead mb-4">
+                    Experience the future of mathematical learning with our AI-powered debate simulation. 
+                    Watch as brilliant AI mathematicians with unique personalities debate complex problems in real-time.
+                </p>
+                <div class="d-flex gap-3 mb-4">
+                    <div class="text-center">
+                        <i class="bi bi-robot display-6"></i>
+                        <p class="mb-0">AI Mathematicians</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="bi bi-chat-dots display-6"></i>
+                        <p class="mb-0">Real-time Debate</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="bi bi-lightbulb display-6"></i>
+                        <p class="mb-0">Interactive Learning</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-card">
+                    <h3 class="text-dark mb-4">Start a New Debate</h3>
+                    <form action="/create-session" method="POST">
+                        <div class="mb-3">
+                            <label for="problem" class="form-label text-dark">Mathematical Problem</label>
+                            <textarea 
+                                class="form-control" 
+                                id="problem" 
+                                name="problem" 
+                                rows="4" 
+                                placeholder="Enter your mathematical problem here..."
+                                required
+                            ></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="difficulty" class="form-label text-dark">Difficulty Level</label>
+                            <select class="form-select" id="difficulty" name="difficulty" required>
+                                <option value="">Choose difficulty...</option>
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="memberCount" class="form-label text-dark">Number of Council Members</label>
+                            <select class="form-select" id="memberCount" name="memberCount" required>
+                                <option value="">Choose number of members...</option>
+                                <option value="3">3 Members</option>
+                                <option value="4">4 Members</option>
+                                <option value="5">5 Members</option>
+                                <option value="6">6 Members</option>
+                                <option value="7">7 Members</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="bi bi-play-circle"></i> Start Debate
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="bi bi-people display-4 text-primary mb-3"></i>
+                    <h5 class="card-title">Meet the Council</h5>
+                    <p class="card-text">
+                        Each AI mathematician has a unique personality and specialty, from Professor Euclid's geometric rigor to Dr. Chaos's probabilistic insights.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="bi bi-lightning display-4 text-warning mb-3"></i>
+                    <h5 class="card-title">Real-time Interaction</h5>
+                    <p class="card-text">
+                        Watch the debate unfold in real-time with live updates. Pause, resume, or even kick out participants mid-session.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="bi bi-file-earmark-pdf display-4 text-danger mb-3"></i>
+                    <h5 class="card-title">Export & Share</h5>
+                    <p class="card-text">
+                        Download the complete debate transcript as a PDF to review later or share with others for educational purposes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Example Problems</h2>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title text-primary">Easy</h6>
+                        <p class="card-text">"What is the area of a circle with radius 5 units?"</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title text-warning">Medium</h6>
+                        <p class="card-text">"Find all real solutions to the equation x³ - 6x² + 11x - 6 = 0"</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title text-danger">Hard</h6>
+                        <p class="card-text">"Prove that the sum of the reciprocals of the first n natural numbers diverges as n approaches infinity"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

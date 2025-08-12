@@ -1,0 +1,101 @@
+<div class="container py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="bi bi-clock-history"></i> Past Debates</h2>
+                <a href="/" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Start New Debate
+                </a>
+            </div>
+            
+            <% if (sessions && sessions.length > 0) { %>
+                <div class="row">
+                    <% sessions.forEach(session => { %>
+                        <div class="col-lg-6 col-xl-4 mb-4">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="mb-0">Session #<%= session.id %></h6>
+                                        <span class="badge bg-<%= session.difficulty === 'easy' ? 'success' : session.difficulty === 'medium' ? 'warning' : 'danger' %>">
+                                            <%= session.difficulty.charAt(0).toUpperCase() + session.difficulty.slice(1) %>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text text-muted">
+                                        <strong>Problem:</strong><br>
+                                        <%= session.problem.length > 100 ? session.problem.substring(0, 100) + '...' : session.problem %>
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted">
+                                            <i class="bi bi-calendar"></i> 
+                                            <%= new Date(session.created_at).toLocaleDateString() %>
+                                        </small>
+                                        <br>
+                                        <small class="text-muted">
+                                            <i class="bi bi-clock"></i> 
+                                            <%= new Date(session.created_at).toLocaleTimeString() %>
+                                        </small>
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="d-flex gap-2">
+                                        <a href="/debate/<%= session.id %>" class="btn btn-outline-primary btn-sm">
+                                            <i class="bi bi-eye"></i> View
+                                        </a>
+                                        <a href="/debate/<%= session.id %>/export" class="btn btn-outline-success btn-sm">
+                                            <i class="bi bi-download"></i> Export
+                                        </a>
+                                        <button class="btn btn-outline-danger btn-sm" onclick="deleteSession(<%= session.id %>)">
+                                            <i class="bi bi-trash"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <div class="text-center py-5">
+                    <i class="bi bi-inbox display-1 text-muted"></i>
+                    <h4 class="text-muted mt-3">No debates yet</h4>
+                    <p class="text-muted">Start your first mathematical debate to see it here!</p>
+                    <a href="/" class="btn btn-primary btn-lg">
+                        <i class="bi bi-play-circle"></i> Start Your First Debate
+                    </a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<script>
+function deleteSession(sessionId) {
+    if (confirm('Are you sure you want to delete this debate session? This action cannot be undone.')) {
+        fetch(`/api/session/${sessionId}`, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showAlert('Debate session deleted successfully', 'success');
+                // Remove the card from the UI
+                const card = document.querySelector(`[onclick="deleteSession(${sessionId})"]`).closest('.col-lg-6');
+                card.remove();
+                
+                // Check if there are no more sessions
+                const remainingCards = document.querySelectorAll('.col-lg-6');
+                if (remainingCards.length === 0) {
+                    location.reload(); // Reload to show the "no debates" message
+                }
+            } else {
+                showAlert('Error deleting session: ' + data.error, 'danger');
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting session:', error);
+            showAlert('Error deleting session', 'danger');
+        });
+    }
+}
+</script>
