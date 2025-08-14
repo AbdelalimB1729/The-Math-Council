@@ -315,7 +315,7 @@ app.use((req, res) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
     console.log(`🚀 The Math Council server running on port ${PORT}`);
     console.log(`📊 OpenRouter API: ${process.env.OPENROUTER_API_KEY ? 'Configured' : 'Not configured (using simulated responses)'}`);
